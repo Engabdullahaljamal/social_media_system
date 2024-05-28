@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -20,8 +21,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate(['name' => 'required']);
-        return Category::create($request->all());
+        Category::create($request->all());
+        return response()->json(['message' => 'category added successfully'], 200);
     }
 
     /**
@@ -39,7 +42,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->update($request->all());
-        return $category;
+        return response()->json(['message' => 'category updated successfully'], 200);
     }
 
     /**

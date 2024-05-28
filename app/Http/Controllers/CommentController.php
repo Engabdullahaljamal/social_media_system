@@ -33,7 +33,7 @@ class CommentController extends Controller
         ]);
         $comment->save();
 
-        return response()->json($comment, 201);
+        return response()->json(['message' => 'comment added successfully'], 200);
     }
 
     /**

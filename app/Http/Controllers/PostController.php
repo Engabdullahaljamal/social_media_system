@@ -37,7 +37,7 @@ class PostController extends Controller
 
         $post->save();
 
-        return response()->json($post, 201);
+        return response()->json(['message' => 'post added successfully'], 200);
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
 
         $post->update($request->all());
 
-        return response()->json($post);
+        return response()->json(['message' => 'post updated successfully'], 200);
     }
 
     /**
