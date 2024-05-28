@@ -29,8 +29,4 @@ Route::get('me', [AuthController::class, 'me'])->middleware('auth:api');
 
 Route::apiResource('categories', CategoryController::class)->middleware('auth:api');
 Route::apiResource('posts', PostController::class)->middleware('auth:api');
-
-
-
-Route::post('comments', [CommentController::class, 'store'])->middleware('auth:api');
-Route::delete('comments/{id}', [CommentController::class, 'destroy'])->middleware('auth:api');
+Route::apiResource('comments', CommentController::class)->middleware('auth:api');
