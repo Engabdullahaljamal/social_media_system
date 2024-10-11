@@ -49,7 +49,15 @@ class CommentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $comment = comment::findOrFail($id);
+
+        if ($comment->user_id != Auth::id()) {
+            return response()->json(['error' => 'You can only edit your own comment.'], 403);
+        }
+
+        $comment->update($request->all());
+
+        return response()->json(['message' => 'comment updated successfully'], 200);
     }
 
     /**
@@ -64,7 +72,6 @@ class CommentController extends Controller
         }
 
         $comment->delete();
-
-        return response()->noContent();
+        return response()->json(['message' => 'comment deleted successfully'], 200);
     }
 }

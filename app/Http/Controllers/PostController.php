@@ -77,6 +77,6 @@ class PostController extends Controller
 
         $post->delete();
 
-        return response()->noContent();
+        return response()->json(['message' => 'post deleted successfully'], 200);
     }
 }
